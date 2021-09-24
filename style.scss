@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+// variables
+$fontColor: #151515;
+$gray: #f3f3f3;
+$blue: #2b5ed9;
+$lightBlue: #87a6ea;
+$purple: #ba1ee1;
+$lightPurple: #ff08de;
+$yellow: #ffd414;
+$orange: #ff8814;
+$pink: #ff286b;
+$red: #ff344b;
+$white: #fff;
+$transition: .3s ease;
+$py: 50px 0;
+
+/**********
+ mixins
+ **********/
+ @mixin flex ($justifyContent,$alignItems,$direction) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $direction;   
+ }
+
+ /**********
+ basic styles
+ **********/
+ *{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+ body{
+    font-family: 'Roboto', sans-serif;
+    color: $fontColor;
+    letter-spacing: 1px;
+    line-height: 1.6;
+ }
+ .container{
+     width: 95%;
+     margin: auto;
+ }
+ ul{
+     list-style: none;
+ }
+ a{
+     text-decoration: none;
+     transition: $transition;
+     color: $fontColor;
+ }
+ h2{
+     font-size: 2rem;
+     font-weight: bold;
+     line-height: 1.3;
+     margin-bottom: 20px;
+ }
+ button {
+     color: $white;
+     padding: 15px 40px;
+     transition: $transition;
+     cursor: pointer;
+     background: linear-gradient(to right, $orange,$red);
+     font-size: .8rem;
+     border: none;
+     margin-top: 10px;
+     &:hover{
+        background: linear-gradient(to right, lighten($orange, 5%), lighten($red, 5%));
+     }
+ }
+ .bgOrange{
+     background: linear-gradient($yellow,$orange);
+ }
+ .bgBlue{
+    background: linear-gradient($purple,$blue);
+}
+.bgPink{
+    background: linear-gradient($red,$pink);
+}
+.bgPurple{
+    background: linear-gradient($lightPurple,$purple);
+}
+.bgGray{
+    background: $gray;
+}
+ .active {
+     color: $white;
+     background: linear-gradient($lightPurple,$blue);
+     &>a {
+         color: $white;
+         &:hover{
+             color: $white;
+         }
+     }
+ }
+  /**********
+ nav
+ **********/
+ nav{
+     @include flex(space-between, center,row );
+     @media(max-width: 767px) {
+        @include flex(space-between, center,column);
+        padding: 10px;
+     }
+     ul{
+        @include flex(space-between, center,row );
+        li{
+            padding: 30px 20px;  
+            @media(max-width: 767px) {
+                font-size: .8rem;
+                padding: 30px 7px;   
+            }
+            &:last-child{
+                padding-right: 0;
+            }
+            a{
+                font-weight: bolder;
+              &:hover {
+                  color: $purple;
+              } 
+            } 
+        }
+     }
+     .logo{
+         font-size: 1.8rem;
+         color: $blue;
+         font-weight: bold;
+         i{
+             font-size: 1rem;
+             position: relative;
+             bottom: 5px;
+         }
+         @media (max-width: 767px) {
+            font-size: 1.5rem;
+        }
+     }
+ }
+
+  /**********
+ header
+ **********/
+ header{
+     background: url(img/header.jpg);
+     height: 90vh;
+     background-size: cover;
+     background-position: center;
+     @media (max-width: 767px) {
+         height: 50vh;
+     }
+ }
+  /**********
+ SectionOne
+ **********/
+  .one{
+    color: $white;
+    margin-top: -150px;
+    @include flex(space-between, center,row );
+    @media (max-width: 767px){
+        @include flex(space-between, center,column );
+        margin-top: -100px;
+
+    }
+      article {
+          flex: 0 0 23%;
+          padding: 30px;
+          @media (max-width: 767px){
+              margin-bottom: 15px;
+          }
+          @media (min-width: 768px) and (max-width: 1200px){
+            flex: 0 0 48%;
+            margin-bottom: 20px;
+       }
+         p{
+             position: relative;
+             i{
+                 font-size: 2rem;
+                 position: absolute;
+                 right: 5%;
+                 cursor: pointer;
+                 padding: 0 20px;
+                 transition: $transition;
+                 @media (max-width: 1400px) {
+                    right: 0%;
+                    padding: 0;
+                }
+                 &:hover{
+                     color: darkgrey;
+                     transform: translateX(13%);
+                 }
+             }
+         } 
+      }
+
+  }
+   /**********
+ SectionTwo
+ **********/
+ .two {
+    padding: $py;
+    @include flex(space-between, stretch, row);
+    article {
+        flex: 0 0 49%;
+        @media (max-width: 767px) {
+             flex: 0 0 100%;
+        }
+        &:first-child {
+             @include flex(center, flex-start, column);
+             padding: 50px;
+        }
+    }
+    .img {
+        background-image: url(img/about1.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 600px;
+    }
+}
+   /**********
+ SectionThree
+ **********/
+ .three {
+    padding-bottom: $py;
+    @include flex(space-between, stretch, row);
+    article {
+        flex: 0 0 49%;
+        @media (max-width: 767px) {
+             flex: 0 0 100%;
+        }
+        &:last-child {
+             @include flex(center, flex-start, column);
+             padding: 50px;
+        }
+    }
+    .img {
+        background-image: url(img/about2.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 600px;
+    }
+}
+   /**********
+ SectionFour
+ **********/
+ .four{
+     margin:$py;
+     background: url(img/rated.jpg);
+     background-position: center;
+     background-size: cover;
+     height: 600px;
+     .container{
+        @include flex(space-between, stretch, row);
+        div{
+            flex: 0 0 49%;
+            color: $white;
+            background: linear-gradient(rgba($red,.9), rgba($pink,.9));
+            height: 600px;
+            padding: 50px;
+            button{
+                color: $fontColor;
+                background: $white;
+                margin-top: 15px;
+                &:hover{
+                   opacity: .9;
+                }
+            }
+        }
+     }
+ }
+    /**********
+ SectionFive
+ **********/
+ .five{
+    @include flex(space-between, stretch, row);
+    color: $white;
+    height: 600px;
+    article {
+        flex: 0 0 49%;
+        &:first-child{
+            @include flex(flex-start, flex-start, column);
+            padding: 50px;
+        }
+        li {
+            margin-bottom: 20px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .img{
+        background: url(img/events.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+ }
+    /**********
+ SectionSix
+ **********/
+ .six{
+    @include flex(space-between, stretch, row);
+    margin-top: 150px;
+    article{
+        flex: 0 0 23%;
+        text-align: center;
+        padding: 50px;
+        img{
+            border-radius: 50%;
+            margin: -140px 0 20px 0;
+        }
+        h3{
+            font-size: 1.8rem;
+            color: $orange;
+            font-weight: bolder;
+            text-align: left;
+        }
+        p{
+            text-align: left;
+            margin-bottom: 20px;
+        }
+    }
+ }
+   /**********
+ SectionSeven
+ **********/
+ .seven{
+    @include flex(space-between, stretch, row);
+    padding-top: 50px;
+    color: $white;
+    article{
+        flex: 0 0 49%;
+        height: 600px;
+        &:first-child{
+            padding: 50px;
+            h3{
+                font-size: 2rem;
+            }
+            h4{
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            p{
+                margin: 20px 0;
+            }
+            div{
+                i{
+                    font-size: 2rem;
+                    color: $white;
+                    margin-right: 15px;
+                    transition: $transition;
+                    &:hover{
+                        opacity: .6;
+                    }
+                }
+            }
+        }
+    }
+    .img{
+        background: url(img/img10.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+ }
+ /**********
+ footer
+ **********/
+ footer{
+     text-align: center;
+     padding: $py;
+ }
